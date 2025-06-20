@@ -20,7 +20,7 @@ else
 	echo "go to set partition"
 fi
 	
-PARTITION="$DISK_PATH"
+PARTITION="${DISK_PATH}1"
 
 read -p "파일 시스템을 생성하시겟습니까? (y/n): " CONFIRM
 if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
