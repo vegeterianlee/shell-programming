@@ -3,7 +3,7 @@
 set -e
 
 # git folder
-read DIR
+read -p "Enter target git directory: " DIR 
 cd "$DIR"
 
 # script fun
@@ -14,18 +14,17 @@ git_exec(){
 	git init
 	git config --global user.name "vegeterian"
 	git config --global user.email "max322318@gmail.com"
-	git config --list
-	
+	git config --list	
 	git add -A
 
 	read -p "Commit message: " MESSAGE
-	git commit -a "$MESSAGE"
+	git commit -m "$MESSAGE"
 
 	read -p "branch please: " BRANCH
 	git branch -M "$BRANCH"
 
 	# github authentication
-	read -p "github username: "
+	read -p "github username: " GITHUB_USER
 	read -s -p "GitHub personal access token: " GITHUB_TOKEN
 	echo
 
@@ -53,13 +52,13 @@ read ANSWER
 case "$ANSWER" in
 	[yY] | [yY][eE][sS]) 
 		echo "confirmed. running script"
-		return 0 ;;
+		;;
 	[nN] | [nN][oO]) 
 		echo "canceled." 
-		return 1 ;;
+		exit 1 ;;
 	*)
 		echo "Invalid input"
-		return 2 ;;
+		exit 2 ;;
 	esac
 
 if [ $? -eq 0 ]; then
