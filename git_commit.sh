@@ -24,6 +24,11 @@ git_exec(){
 	git branch -M "$BRANCH"
 
 	# github authentication
+	if [[ $(git remote -v | wc -l) -ge 1 ]]; then
+		git push -u origin "$BRANCH"
+		exit 0
+	fi
+
 	read -p "github username: " GITHUB_USER
 	read -s -p "GitHub personal access token: " GITHUB_TOKEN
 	echo
