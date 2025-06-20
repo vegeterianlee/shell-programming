@@ -38,8 +38,12 @@ git_exec(){
 	done
 
 	URL="https://$GITHUB_USER:$GITHUB_TOKEN@$REPO_URL"
+	if [[ $(git remote -v | wc -l) -ge 1 ]]; then
+    	git remote set-url origin "$URL"
+	else
+   		git remote add origin "$URL"
+	fi
 
-	git remote add origin "$URL"
 	git push -u origin "$BRANCH"
 
 }
